@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Coffee & Python
-image: "/img/posts/coffee-python.jpg"
+image: "/img/posts/coffee_python.jpg"
 tags: [Python, Coffee]
 ---
 
@@ -54,7 +54,7 @@ Here is an _ordered list_ showing some things I love about coffee:
 
 I love Python & Coffee so much, here is that picture from the top of my project AGAIN, but this time, in the BODY of my project!
 
-![alt text](/img/posts/coffee-python.jpg "Coffee & Python - I love them!")
+![alt text](/img/posts/coffee_python.jpg "Coffee & Python - I love them!")
 
 The above image is just linked to the actual file in my Github, but I could also link to images online, using the URL!
 
