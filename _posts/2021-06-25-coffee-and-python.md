@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Coffee & Python
-image: "/posts/coffee_python.jpg"
+image: "/img/posts/coffee_python.jpg"
 tags: [Python, Coffee]
 ---
 
@@ -39,7 +39,7 @@ Here is an **unordered list** showing some things I love about Python
 
 * For my work
     * Data Analysis
-    * Data Visualisation
+    * Data Visualization
     * Machine Learning
 * For fun
     * Deep Learning
@@ -49,9 +49,9 @@ Here is an **unordered list** showing some things I love about Python
 Here is an _ordered list_ showing some things I love about coffee
 
 1. The smell
-    1. Especially in the morning, but also at all times of the day!
+    Especially in the morning, but also at all times of the day!
 2. The taste
-3. The fact I can run the 100m in approx. 9 seconds after having 4 cups in quick succession
+3. The fact I can run the 100m in approx. 9 seconds after having 4 cups in quick succession!
 
 I love Python & Coffee so much, here is that picture from the top of my project AGAIN, but this time, in the BODY of my project!
 
