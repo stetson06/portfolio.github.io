@@ -1104,7 +1104,7 @@ The most important outcome for this project was predictive accuracy, rather than
 Even though we were not specifically interested in the drivers of prediction, it was interesting to see across all three modeling approaches, that the input variable with the biggest impact on the prediction was *distance_from_store* rather than variables such as *total sales*. This is interesting information for the business, so discovering this as we went was worthwhile.
 
 <br>
-# Predicting Missing Loyalty Scores <a name="modelling-predictions"></a>
+# Predicting Missing Loyalty Scores <a name="modeling-predictions"></a>
 
 We have selected the model to use (Random Forest) and now we need to make the *loyalty_score* predictions for those customers that the market research consultancy were unable to tag.
 
@@ -1165,4 +1165,5 @@ We could even look to tune the hyperparameters of the Random Forest, notably reg
 
 
 From a data point of view, further variables could be collected, and further feature engineering could be undertaken to ensure that we have as much useful information available for predicting customer loyalty.
+
 
