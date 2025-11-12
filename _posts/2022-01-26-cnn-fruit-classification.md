@@ -742,7 +742,7 @@ We run the exact same code as we did for the earlier networks, with the only cha
 <br>
 #### Test Set Classification Accuracy
 
-You may recall that our Baseline network achieved a **75% Classification Accuracy** on the test set while our network with Dropout applied achieved **85%**. With the addition of Image Augmentation, we saw both a reduction in overfitting and an increased *validation set* accuracy. On the test set, we again see a marked improvement from both the Baseline and Dropout networks, with a **93% Classification Accuracy**. 
+You may recall that our Baseline network achieved a **75% Classification Accuracy** on the test set while our network with Dropout applied achieved **85%**. With the addition of Image Augmentation, we saw both reduction in overfitting and increase in *validation set* accuracy. On the test set, we again see a marked improvement from both the Baseline and Dropout networks, with a **93% Classification Accuracy**. 
 
 <br>
 #### Test Set Confusion Matrix
@@ -777,7 +777,7 @@ So, while overall our test set accuracy was 93%, for each individual class we se
 * Lemon: 100%
 * Orange: 100%
 
-All classes here are being predicted *more accurately* when compared to the baseline network, and *at least as accurate or better* when compared to the network with Dropout added.
+All classes here are being predicted *more accurately* when compared to the Baseline network, and *at least as accurately or better* when compared to the network with Dropout added.
 
 Utilizing Image Augmentation *and* applying Dropout will be a powerful combination!
 
@@ -790,25 +790,25 @@ ___
 
 So far, with our Fruit Classification task, we have:
 
-* Started with a baseline model
+* Started with a Baseline model
 * Added Dropout to help with overfitting
-* Utilised Image Augmentation
+* Utilized Image Augmentation
 
-The addition of Dropout, and Image Augmentation boosted both performance and robustness - but there is one thing we've not tinkered with yet, and something that *could* have a big impact on how well the network learns to find and utilise important features for classifying our fruits - and that is the network *architecture*!
+The addition of Dropout and Image Augmentation boosted both performance and robustness - but there is one thing we haven't tinkered with yet (and something that *could* have a big impact on how well the network learns to find and utilize important features for classifying our fruit) - and that is the network's *architecture*!
 
-So far, we've just used 2 convolutional layers, each with 32 filters, and we've used a single Dense layer, also, just by coincidence, with 32 neurons - and we admitted that this was just a place to start, our baseline.
+So far, we've just used two convolutional layers, each with 32 filters, and we've used a single Dense layer, also, just by coincidence, with 32 neurons - and we admitted that this was just a place to start as a baseline.
 
-One way for us to figure out if there are *better* architectures, would be to just try different things. Maybe we just double our number of filters to 64, or maybe we keep the first convolutional layer at 32, but we increase the second to 64.Perhaps we put a whole lot of neurons in our hidden layer, and then, what about things like our use of Adam as an optimizer, is this the best one for our particular problem, or should we use something else?
+One way for us to figure out if there are *better* architectures would be to try one or more possible tweaks. Maybe we just double our number of filters to 64, or maybe we keep the first convolutional layer at 32 but increase the second to 64. Perhaps we add a whole bunch of neurons to a certain hidden layer. And then what about things like use of adam as an optimizer - is this the best one for our particular problem or should we use something else?
 
-As you can imagine, we could start testing all of these things, and noting down performances, but that would be quite messy.
+As you can imagine, we could start testing all of these things and noting down performance, but that would be quite messy.
 
-Here we will instead utlise *Keras Tuner* which will make this a whole lot easier for us!
+So instead, we will utilize *Keras Tuner*, which will make this a whole lot easier for us!
 
-At a high level, with Keras Tuner, we will ask it to test, a whole host of different architecture and parameter options, based upon some specifications that we put in place.  It will go off and run some tests, and return us all sorts of interesting summary statistics, and of course information about what worked best.
+At a high level, with Keras Tuner, we will ask it to test a whole host of different architecture and parameter options, based upon some specifications that we put in place. It will go off and run some tests and return all sorts of interesting summary statistics, to include information about what worked best.
 
-Once we have this, we can then create that particular architecture, train the network just as we've always done - and analyse the performance against our original networks.
+Once we have this, we can then create that particular architecture, train the network just as we've always done - and analyze its performance against our original networks.
 
-Our data pipeline will remain the same as it was when applying Image Augmentation.  The code below shows this, as well as the extra packages we need to load for Keras-Tuner.
+Our data pipeline will remain the same as it was when applying Image Augmentation. The code below shows this as well as the extra packages we need to load for Keras-Tuner.
 
 ```python
 
@@ -850,15 +850,15 @@ validation_set = validation_generator.flow_from_directory(directory = validation
 <br>
 #### Application Of Keras Tuner
 
-Here we specify what we want Keras Tuner to test, and how we want it to test it!
+Here we specify what we want Keras Tuner to test and how we want it to test it!
 
-We put our network architecture into a *function* with a single parameter called *hp* (hyperparameter)
+We put our network architecture into a *function* with a single parameter called *hp* (hyperparameter).
 
-We then make use of several in-build bits of logic to specify what we want to test.  In the code below we test for:
+We then make use of several built-in bits of logic to specify what we want to test. In the code below we test for:
 
-* Convolutional Layer Count - Between 1 & 4
+* Convolutional Layer Count - Between 1 & 2
 * Convolutional Layer Filter Count - Between 32 & 256 (Step Size 32)
-* Dense Layer Count - Between 1 & 4
+* Dense Layer Count - Between 1 & 3
 * Dense Layer Neuron Count - Between 32 & 256 (Step Size 32)
 * Application Of Dropout - Yes or No
 * Optimizer - Adam or RMSProp
@@ -902,15 +902,15 @@ def build_model(hp):
 
 ```
 <br>
-Once we have the testing logic in place - we use want to put in place the specifications for the search!
+Once we have the testing logic in place, we use want to put in place the specifications for the search!
 
 In the code below, we set parameters to:
 
 * Point to the network *function* with the testing logic (hypermodel)
-* Set the metric to optimise for (objective)
+* Set the metric to optimize for (objective)
 * Set the number of random network configurations to test (max_trials)
 * Set the number of times to try each tested configuration (executions_per_trial)
-* Set the details for the output of logging & results
+* Set the details for the output of logging and results
 
 ```python
 
@@ -1361,6 +1361,7 @@ The proof of concept was successful, we have shown that we can get very accurate
 
 
 Transfer Learning has been a big success, and was the best performing network in terms of classification accuracy on the Test Set - however we still only trained for a small number of epochs so we can push this even further.  It would be worthwhile testing other available pre-trained networks such as ResNet, Inception, and the DenseNet networks.
+
 
 
 
